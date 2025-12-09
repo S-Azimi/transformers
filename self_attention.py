@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F # for softmax
 
+# in this file we just implement the class and weights are random. there is no training here!
+
 
 class SelfAttention(nn.Module):
     def __init__(self, d_model=2, row_dim=0, col_dim=1): 
@@ -14,8 +16,8 @@ class SelfAttention(nn.Module):
     
     def forward(self, token_encoding):
         q = self.W_q(token_encoding)
-        k = self.W_q(token_encoding)
-        v = self.W_q(token_encoding)
+        k = self.W_k(token_encoding)
+        v = self.W_v(token_encoding)
 
         sims = torch.matmul(q,k.transpose(dim0=self.row_dim, dim1=self.col_dim))
         scaled_sims = sims / torch.tensor(k.size(self.col_dim)**0.5)
