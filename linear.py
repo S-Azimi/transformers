@@ -11,7 +11,6 @@ input_tensor =  torch.tensor([[1, 2, 1],[1, 2, 3]]).float()
 output = linear_layer(input_tensor)
 print(f"Input shape: {input_tensor.shape}")
 print(f"Output shape: {output.shape}")
-print("weight%flinear_layer.weight")
-print(input_tensor )
+print(f"weight: {linear_layer.weight}")
 print(output)
 
