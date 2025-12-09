@@ -1,5 +1,7 @@
 import torch
 import torch.nn as nn
+# simple linear
+
 
 linear_layer = nn.Linear(in_features=3, out_features=2)
 input_tensor = torch.randn(10, 5)  # Batch size 10, 5 features
@@ -12,3 +14,4 @@ print(f"Output shape: {output.shape}")
 print("weight%flinear_layer.weight")
 print(input_tensor )
 print(output)
+
