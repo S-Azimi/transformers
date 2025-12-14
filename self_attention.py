@@ -20,13 +20,15 @@ class SelfAttention(nn.Module):  # define new class inherited form nn.Module
         k = self.W_k(token_encoding)
         v = self.W_v(token_encoding)
         # here we have 3 series of weights. when we start to train them
-        sims = torch.matmul(q,k.transpose(dim0=self.row_dim, dim1=self.col_dim))
+        sims = torch.matmul(q,k.transpose(dim0=self.row_dim, dim1=self.col_dim))  # similarity matrix between query and keys
         scaled_sims = sims / torch.tensor(k.size(self.col_dim)**0.5)
         attention_percents = F.softmax(scaled_sims, dim=self.col_dim) # col_dim is 1 so it calculate softmax based on rows!
         attention_score = torch.matmul(attention_percents,v)
+        print(sims.shape)
         return attention_score
-
+# in this example, we just have the query in the size of m*n where m is embedding size and n is number of tokens in query statement
 encoding_matrix = torch.tensor([[1.16, 0.23],[0.57, 1.36],[4.41, -2.16]]) # the encoded values of query which is used to calculate q,k,v matrices
+# encoding_matrix = torch.tensor([[1.16, 0.23, 0.3, 0.4, 0.6],[0.57, 1.36, 0.3, 0.4, 0.6],[4.41, -2.16, -0.3, -0.4, -0.6]]) # the encoded values of query which is used to calculate q,k,v matrices
 
 torch.manual_seed(42)
 SelfAttention = SelfAttention(d_model=2, row_dim=0, col_dim=1)
