@@ -3,8 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F # for softmax
 
 # in this file we just implement the class and weights are random. there is no training here!
-
-
+# In self-attention, we have just one input: embedding of input text. based on 3 different weight matrices, we create q, k and v
+# this formula and a code, calculate scaled dot product similarities among all of the words.
+# For example if we have 10 words and 20 is embedding size, at the end we have 10 x 20 matrix so we have 20 attention score for each word
 class SelfAttention(nn.Module):  # define new class inherited form nn.Module 
 
     def __init__(self, d_model=2, row_dim=0, col_dim=1): 
