@@ -24,7 +24,8 @@ class SelfAttention(nn.Module):  # define new class inherited form nn.Module
         sims = torch.matmul(q,k.transpose(dim0=self.row_dim, dim1=self.col_dim))  # similarity matrix between query and keys
         scaled_sims = sims / torch.tensor(k.size(self.col_dim)**0.5)
         attention_percents = F.softmax(scaled_sims, dim=self.col_dim) # col_dim is 1 so it calculate softmax based on rows!
-        attention_score = torch.matmul(attention_percents,v)
+        print(attention_percents)
+        attention_score = torch.matmul(attention_percents,v)  # in here we just do the real transformation.
         print(sims.shape)
         return attention_score
 # in this example, we just have the query in the size of m*n where m is embedding size and n is number of tokens in query statement
