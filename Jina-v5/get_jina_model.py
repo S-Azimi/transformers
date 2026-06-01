@@ -10,4 +10,4 @@ local_dir = snapshot_download(
 
 print("Downloaded to:", local_dir)
 
-# https://huggingface.co/Alibaba-NLP/gte-multilingual-base
+# https://huggingface.co/Alibaba-NLP/gte-multilingual-basefsdf
