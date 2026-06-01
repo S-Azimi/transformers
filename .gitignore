@@ -1,0 +1,5 @@
+.venv
+*.bak
+*.zip
+Qwen3.5-9B-AWQ-4bit
+
