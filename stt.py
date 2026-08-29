@@ -7,6 +7,7 @@ model = WhisperModel(
     compute_type="float16"  # برای CPU از "int8" استفاده کنید
 )
 
+
 segments, info = model.transcribe(
     "mp3/Mohammad non banking.m4a",
     language="fa",          # مشخص کردن زبان فارسی (مهم!)
@@ -18,4 +19,9 @@ print(f"زبان تشخیص داده شده: {info.language} ({info.language_pro
 
 for segment in segments:
     print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
+
+divmod 
+
+divmod in the case sensetive attention with this ConnectionAbortedError
+    
 
