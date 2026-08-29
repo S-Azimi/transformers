@@ -20,8 +20,3 @@ print(f"زبان تشخیص داده شده: {info.language} ({info.language_pro
 for segment in segments:
     print(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
 
-divmod 
-
-divmod in the case sensetive attention with this ConnectionAbortedError
-    
-
