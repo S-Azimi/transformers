@@ -8,8 +8,10 @@ model = CrossEncoder("BAAI/bge-reranker-v2-m3")
 # ])
 
 scores = model.predict([
-    ("چرا قد من کوتاه است؟", "بخاطر مسائل ژنتیکی"),
-    ("چرا قد من کوتاه است؟", "بخاطر نخوردن شیر")
+    ("متوجه شدم که نیاز به صحبت دارید", "متوجه شدم که نیاز به صحبت با کارشناس دارید."),
+
 ])
 
-print("Scores:", scores)
+for score in scores:
+    print(f"Score: {score * 1:.4f}")
+

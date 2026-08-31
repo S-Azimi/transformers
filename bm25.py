@@ -17,9 +17,9 @@ print(f'the score is {scores}')
 from rapidfuzz import fuzz # pip install rapidfuzz
 
 
-s1 = "تراکنش شما به دلیل محدودیت موجودی انجام نشد"
-s2 = "تراکنش من ناموفق شد"
+s1 = "متوجه شدم که نیاز به صحبت با کارشناس دارید."
+s2 = "شماره تماس میخوام زنگ بزنم پشتیبانی چون ربات جواب چیزی که میخوام رو نمیده بهم"
 
 # مقایسه اشتراک کلمات با در نظر گرفتن جابه‌جایی کلمات (Token Set Ratio)
-score = fuzz.token_set_ratio(s1, s2)
-print(score)  # عددی بین 0 تا 100
+score_rapid = fuzz.token_set_ratio(s1, s2)
+print(score_rapid)
