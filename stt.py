@@ -10,9 +10,9 @@ model = WhisperModel(
 
 segments, info = model.transcribe(
     "mp3/Mohammad non banking.m4a",
-    language="fa",          # مشخص کردن زبان فارسی (مهم!)
+    language="fa",         
     beam_size=5,
-    vad_filter=True         # حذف سکوت‌ها با VAD
+    vad_filter=True         # Delete silences 
 )
 
 print(f"زبان تشخیص داده شده: {info.language} ({info.language_probability:.2f})")
