@@ -58,9 +58,9 @@ with open(INPUT_CSV_PATH, mode='r', encoding='utf-8') as infile:
 
 ---
 
-You MUST evaluate the response in THREE strictly separated stages.
+You MUST evaluate the response in TWO strictly separated stages.
 
-STAGE 1 — BUILD THE EFFECTIVE AGENT RESPONSE
+STAGE 1 — extract main_answer from Agent Response
 
 Split the Agent Response into semantic sentences or clauses.
 
@@ -96,12 +96,8 @@ necessary clarification,
 genuinely useful new information.
 
 DELETE PARAPHRASE / ACKNOWLEDGEMENT and just keep main_answer
- deleted is called:
 
-main_answer
-
-use main_answer for next steps
----
+JUST use main_answer for next step
 
 ## STEP 2 — EVALUATE THE main_answer
 
@@ -141,7 +137,7 @@ Ticket:
 Response:
 "متوجه شدم که نیاز به صحبت با کارشناس دارید."
 
-After removing the paraphrase, in main_answer nothing is remains. The requested support phone number was not provided.
+The requested support phone number was not provided.
 
 ---
 
@@ -173,13 +169,22 @@ Response:
 Result:
 Low relevancy because the response discusses **Shayan Loan** instead of **Microloan**.
 
----
+Example:
 
-## STEP 3 — STATUS CLASSIFICATION
+Ticket:
+"من شهر تولدم را در فهرست آدرس ها پیدا نمی‌ کنم"
+Response:
+"تاریخ تولد خود را مطابق آنچه که در کارت ملی شما وجود دارد، وارد کنید."
+
+Result:
+Low relevancy because the response discusses **‌date of birth** instead of **place of birth**.
+
+
+### STATUS CLASSIFICATION
 
 Choose exactly ONE of the following categories:
 
-### "more_info_required"
+#### "more_info_required"
 
 Use when:
 
@@ -214,14 +219,6 @@ Ticket:
 Response:
 "متوجه شدم که تمامی استعلام‌ها تأیید شده‌اند و فقط مرحله آخر خطا دارد. لطفاً متن دقیق خطایی که در مرحله آخر مشاهده می‌کنید ارسال کنید."
 
-After removing the paraphrase, the substantive response is:
-"لطفاً متن دقیق خطایی که در مرحله آخر مشاهده می‌کنید ارسال کنید."
-
-Status:
-"more_info_required"
-
----
-
 ### "ticket_not_clear"
 
 Use when:
@@ -252,7 +249,7 @@ Use when the agent fails to provide a substantive answer.
 
 This includes cases where:
 
-1. After removing paraphrase, acknowledgment, and generic filler, nothing meaningful remains.
+1. After removing paraphrase, acknowledgment the main_answer is not meaningful.
 
 Example:
 
@@ -298,6 +295,7 @@ Use when:
 * The main_answer rationally and directly answers the user's ticket.
 * main_answer provides useful information, instructions, explanation, or a resolution.
 * No essential additional information from the user is required before giving the answer.
+
 
 The response does NOT need to be perfect to be `"valid"`. Minor completeness or relevancy issues should be reflected in the numeric scores.
 
