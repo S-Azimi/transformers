@@ -1,6 +1,8 @@
 import csv
 import json
 from openai import OpenAI
+import os
+
 
 ### set the LLM model ####################################################################################
 client = OpenAI(
@@ -8,12 +10,24 @@ client = OpenAI(
     api_key="empty",  # vLLM does not require a real key by default
 )
 
-# --- 1. File Path Configuration ---
+
+# --- 1. Helper function for auto-incrementing output filename ---
+def get_next_output_path(directory: str = "data", base_name: str = "evaluation-result", extension: str = "csv") -> str:
+    """Finds the next available index and returns the full path (e.g., 'data/evaluation-result_1.csv')."""
+    os.makedirs(directory, exist_ok=True)
+    counter = 1
+    while True:
+        candidate_path = os.path.join(directory, f"{base_name}_{counter}.{extension}")
+        if not os.path.exists(candidate_path):
+            return candidate_path
+        counter += 1
+
+# --- 2. File Path Configuration ---
 INPUT_CSV_PATH = "data/temp_input.csv"
-OUTPUT_CSV_PATH = "data/evaluations4.csv"
+OUTPUT_CSV_PATH = get_next_output_path(directory="data", base_name="evaluation-result")
 
 
-# --- 2. Prompts Setup ---
+# --- 3. Prompts Setup ---
 SYSTEM_PROMPT = (
     "You are an expert AI Quality Assurance Judge specialized in customer support ticketing systems. "
     "Your task is to evaluate the quality of an AI Agent's response to a user ticket based on three strict criteria: "
@@ -377,55 +391,3 @@ Use exactly this schema:
             writer.writerow(output_row)
 
 print(f"\nEvaluation complete! Results saved to: {OUTPUT_CSV_PATH}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-# prompt = f"""
-# You are an evaluation assistant. Evaluate the following Question and Answer based on:
-# 1. Completeness
-# 2. Quality
-# 3. Relevancy
-# 4. Validation
-
-# Question: {q}
-# Answer: {a}
-
-# Provide your evaluation strictly as a valid JSON object matching this schema:
-# {{
-#     "completeness_score": <1-10>,
-#     "quality_score": <1-10>,
-#     "relevancy_score": <1-10>,
-#     "validation_score": <1-10>,
-#     "total_score": <1-10>,
-#     "feedback": "<brief explanation>"
-# }}
-# Do not include any text outside the JSON object.
-# """
-
-# response = client.chat.completions.create(
-#     model="gemma-4-12B-it-AWQ-INT4",
-#     messages=[
-#         {"role": "system", "content": "You are a helpful assistant that only outputs valid JSON."},
-#         {"role": "user", "content": prompt}
-#     ],
-#     response_format={"type": "json_object"},
-#     temperature=0.2,  # Lower temperature is recommended for structured JSON extraction
-#     max_tokens=300,
-# )
-
-# # Extract and parse the JSON response
-# raw_content = response.choices[0].message.content
-# result_json = json.loads(raw_content)
-
-# print(result_json)
-# print(f"Total Score: {result_json.get('total_score')}")
