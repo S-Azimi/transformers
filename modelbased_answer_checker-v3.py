@@ -125,8 +125,11 @@ Identify all distinct user intents, questions, problems, or requested actions in
 
 #### Scoring Rubric
 
-* **10:** Fully complete. Addresses all important user intents with clear and actionable information.
-* **1:** Does not substantively address the user's main request.
+
+9-10: Fully complete. Addresses all important user intents with clear and actionable information.
+6-8: Mostly complete. Addresses the main issue but misses a minor intent, detail, or part of the resolution.
+3-5: Major omissions. Addresses only part of the user's request or misses an important issue.
+1-2: Does not substantively address the user's main request.
 
 #### Important
 
@@ -164,10 +167,11 @@ Score between 1 to 10.
 Evaluate whether the main_answer of the response is directly related to the user's actual issue, product, service, entity, and request.
 
 #### Scoring range
-
-* **10:** Directly and specifically relevant to the exact issue and product/service.
-* **9 to 2:** according the the relevancy score, when the response is not perfect nor very irrelevant.
-* **1:** completely irrelevant, discusses the wrong product/service, nonsensical
+Scoring Rubric
+9-10: Directly and specifically relevant to the exact issue and product/service.
+6-8: Mostly relevant but somewhat generic or contains minor unnecessary information.
+3-5: Weakly relevant, partially off-topic, or discusses the wrong aspect of the issue.
+1-2: Irrelevant, discusses the wrong product/service, nonsensical, or contains no substantive response after paraphrase removal.
 
 #### Important
 
