@@ -143,16 +143,17 @@ The requested support phone number was not provided.
 
 ### 2. Relevancy
 
-Score from 1 to 10.
+Score between 1 to 10.
 
 #### Goal
 
 Evaluate whether the main_answer of the response is directly related to the user's actual issue, product, service, entity, and request.
 
-#### Scoring Rubric
+#### Scoring range
 
 * **10:** Directly and specifically relevant to the exact issue and product/service.
-* **1:** Irrelevant, discusses the wrong product/service, nonsensical, or contains no substantive response after paraphrase removal.
+* **9 to 2:** according the the relevancy score, when the response is not perfect nor very irrelevant.
+* **1:** completely irrelevant, discusses the wrong product/service, nonsensical
 
 #### Important
 
