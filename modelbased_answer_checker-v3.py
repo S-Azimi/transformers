@@ -60,8 +60,6 @@ with open(INPUT_CSV_PATH, mode='r', encoding='utf-8') as infile:
             q = row['question']
             a = row['answer']
 
-            print(f"Evaluating Ticket ID: {ticket_id}...")
-
             user_prompt = f"""Evaluate the following customer support Ticket and Agent Response.
 
             ### INPUT DATA
@@ -393,7 +391,7 @@ with open(INPUT_CSV_PATH, mode='r', encoding='utf-8') as infile:
 
             # Write the result row immediately to file
             writer.writerow(output_row)
-            print(f"Evaluating Ticket ID: {ticket_id} ...{output_row{'status'}}")
+            print(f"Evaluating Ticket ID: {ticket_id} ...{output_row['status']}")
 
 
 print(f"\nEvaluation complete! Results saved to: {OUTPUT_CSV_PATH}")
